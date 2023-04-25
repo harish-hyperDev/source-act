@@ -2,16 +2,30 @@
 
 # Change the path of directory 
 ENV_DIR=/home/user/.venv
+
+function help_menu() {
+    echo "Usage:"
+    echo "  source-act [options] [environment_name]"
+    echo
+    echo "OPTIONS"
+    echo "  --help\tshow help menu"
+    echo "  -l, --list\tshow list of enironment names"
+}
+
 if [ $1 ];
 then
     # echo "hello $1"
-    if [[ $1 == "--list" ]];
+    if [[ $1 == "--list" || $1 == "-l" ]];
     then
         for i in $(eval "ls $ENV_DIR")
         do
             echo "$i"
         done
-    # elif [[ $1 ]]
+
+    elif [[ $1 == "--help" ]];
+    then
+        help_menu
+
     else
         ENV_FOUND=0
         for i in $(eval "ls $ENV_DIR")
@@ -31,11 +45,6 @@ then
         fi
     fi
 else
-    echo "Usage:"
-    echo "  source-act [options] [environment_name]"
-    echo
-    echo "OPTIONS"
-    echo "  --help\tshow help menu"
-    echo "  --list\tshow list of enironment names"
+    help_menu
 fi
 return "done"
