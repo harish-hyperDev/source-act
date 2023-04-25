@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# Change the path of directory 
+ENV_DIR=/home/user/.venv
+if [ $1 ];
+then
+    # echo "hello $1"
+    if [[ $1 == "--list" ]];
+    then
+        for i in $(eval "ls $ENV_DIR")
+        do
+            echo "$i"
+        done
+    # elif [[ $1 ]]
+    else
+        ENV_FOUND=0
+        for i in $(eval "ls $ENV_DIR")
+        do
+            if [[ $i == $1 ]];
+            then
+                ENV_FOUND=1
+            fi
+        done
+
+        if [[ $ENV_FOUND == 1 ]];
+        then
+            source "$ENV_DIR/$1/bin/activate"
+            echo "Loaded $1 -- ✅"
+        else
+            echo "Environment Not Found ❌"
+        fi
+    fi
+else
+    echo "Usage:"
+    echo "  source-act [options] [environment_name]"
+    echo
+    echo "OPTIONS"
+    echo "  --help\tshow help menu"
+    echo "  --list\tshow list of enironment names"
+fi
+return "done"
