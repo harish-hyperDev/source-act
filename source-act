@@ -2,6 +2,7 @@
 
 # Change the path of directory 
 ENV_DIR=/home/user/.venv
+export PROJECT_DIR=$(pwd)
 
 function help_menu() {
     echo "Usage:"
@@ -40,6 +41,7 @@ then
         then
             source "$ENV_DIR/$1/bin/activate"
             echo "Loaded $1 -- ✅"
+            echo "Current Directory is $PROJECT_DIR"
         else
             echo "Environment Not Found ❌"
         fi
@@ -47,4 +49,3 @@ then
 else
     help_menu
 fi
-return "done"
