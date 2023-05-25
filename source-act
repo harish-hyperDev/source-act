@@ -41,7 +41,6 @@ then
         then
             source "$ENV_DIR/$1/bin/activate"
             echo "Loaded $1 -- ✅"
-            echo "Current Directory is $PROJECT_DIR"
         else
             echo "Environment Not Found ❌"
         fi
